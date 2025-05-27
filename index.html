@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anamnesis Clínica - Dental Estudio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es', // Idioma original de tu página
+                includedLanguages: 'en,fr,de', // Otros idiomas a los que quieres traducir (puedes añadir más)
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <style>
+        /* Fuentes personalizadas */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Fondo gris claro */
+            line-height: 1.6; /* Espaciado de línea para mejor lectura */
+        }
+        .container {
+            max-width: 800px; /* Ancho máximo del formulario */
+            margin: 2rem auto; /* Centrar y añadir margen */
+            padding: 1.5rem; /* Padding ligeramente reducido para móviles */
+            background-color: #ffffff; /* Fondo blanco para el formulario */
+            border-radius: 0.75rem; /* Bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+        @media (min-width: 640px) { /* Para pantallas más grandes que sm (640px) */
+            .container {
+                padding: 2rem; /* Restaurar padding original en pantallas más grandes */
+            }
+        }
+        .form-section-title {
+            border-bottom: 2px solid #e5e7eb; /* Línea separadora */
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            font-weight: 500; /* Texto de etiqueta un poco más grueso */
+            color: #374151; /* Color de texto más oscuro */
+            display: block; /* Asegura que la etiqueta esté en su propia línea */
+            margin-bottom: 0.25rem;
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db; /* Borde gris claro */
+            border-radius: 0.5rem; /* Bordes redondeados */
+            margin-top: 0.25rem;
+            margin-bottom: 1rem;
+            box-sizing: border-box; /* Incluir padding y borde en el ancho */
+            min-height: 44px; /* Asegura un tamaño mínimo para fácil interacción táctil */
+            transition: border-color 0.3s ease; /* Suaviza el cambio de color del borde */
+        }
+        .form-textarea {
+            min-height: 80px; /* Altura mínima para textareas */
+            resize: vertical; /* Permitir redimensionar verticalmente */
+        }
+        .required-asterisk {
+            color: #ef4444; /* Color rojo para el asterisco de obligatorio */
+        }
+        /* Ajuste para grupos de radio/checkbox para mejor apilamiento en móvil */
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: flex-start; /* Alinea el texto con la parte superior del checkbox/radio */
+            margin-bottom: 0.75rem; /* Más espacio entre opciones */
+            cursor: pointer;
+            color: #374151; /* Color por defecto del texto de la etiqueta */
+            transition: color 0.3s ease; /* Suaviza el cambio de color del texto */
+        }
+        .radio-group input[type="radio"], .checkbox-group input[type="checkbox"] {
+            margin-right: 0.75rem; /* Más espacio a la derecha del input */
+            min-width: 1.25rem; /* Asegura un tamaño mínimo para el input */
+            min-height: 1.25rem; /* Asegura un tamaño mínimo para el input */
+            flex-shrink: 0; /* Evita que el input se encoja */
+            margin-top: 0.25rem; /* Pequeño ajuste para alinear con el texto */
+        }
+        .conditional-field {
+            display: none; /* Oculto por defecto, JavaScript lo mostrará si aplica */
+            margin-left: 0.5rem; /* Reducir indentación en móvil */
+            padding-left: 0.75rem;
+            border-left: 2px solid #d1d5db;
+            margin-top: 0.5rem; /* Ajuste de margen superior */
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 640px) { /* Para pantallas más grandes que sm (640px) */
+            .conditional-field {
+                margin-left: 1.5rem; /* Restaurar indentación original en pantallas más grandes */
+                padding-left: 1rem;
+                margin-top: -0.5rem;
+            }
+        }
+        .legal-text {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem; /* Texto legal un poco más pequeño */
+            color: #4b5563;
+        }
+        .legal-text h3 {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+        .legal-text ul, .legal-text ol {
+            list-style-position: inside; /* Asegura que las viñetas/números no se salgan en móvil */
+            margin-left: 0.5rem; /* Reducir indentación de lista en móvil */
+            margin-top: 0.5rem;
+        }
+        @media (min-width: 640px) { /* Para pantallas más grandes que sm (640px) */
+            .legal-text ul, .legal-text ol {
+                margin-left: 1.25rem; /* Restaurar indentación original */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="google_translate_element" class="text-right p-4"></div>
+
+    <div class="container">
+        <div class="text-center mb-6">
+            <img src="logo.JPG" alt="Logo Dental Estudio" class="mx-auto mb-4 w-full h-auto max-h-32 object-contain rounded-lg">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Anamnesis Clínica</h1>
+            <p class="text-gray-600 text-sm">
+                Por favor, complete este formulario con sus datos de contacto y la información médica solicitada.
+                Toda la información será tratada con la máxima confidencialidad.
+            </p>
+        </div>
+
+        <form id="anamnesisForm" action="https://script.google.com/macros/s/AKfycbwLhcjCyjpie302KL8m7Jv891-Gw_INxBDUQvPl0biw9HTW9wEOtO7cv5Aq0KQnJ-1S/exec" method="POST" class="space-y-6">
+
+            <div class="form-section-title">
+                <h2 class="text-2xl font-semibold text-gray-700">1. Datos de Contacto y Básicos</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="num_historia_clinica" class="form-label">NÚM. HISTORIA CLÍNICA</label>
+                    <input type="text" id="num_historia_clinica" name="num_historia_clinica" class="form-input">
+                </div>
+
+                <div>
+                    <label for="fecha" class="form-label">FECHA <span class="required-asterisk">*</span></label>
+                    <input type="date" id="fecha" name="fecha" required class="form-input">
+                </div>
+
+                <div>
+                    <label for="nombre_paciente" class="form-label">NOMBRE PACIENTE <span class="required-asterisk">*</span></label>
+                    <input type="text" id="nombre_paciente" name="nombre_paciente" required class="form-input">
+                </div>
+
+                <div>
+                    <label for="apellidos_paciente" class="form-label">APELLIDOS PACIENTE <span class="required-asterisk">*</span></label>
+                    <input type="text" id="apellidos_paciente" name="apellidos_paciente" required class="form-input">
+                </div>
+
+                <div>
+                    <label for="dni" class="form-label">DNI <span class="required-asterisk">*</span></label>
+                    <input type="text" id="dni" name="dni" required class="form-input">
+                </div>
+
+                <div>
+                    <label for="fecha_nacimiento" class="form-label">FECHA NACIMIENTO <span class="required-asterisk">*</span></label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label for="direccion" class="form-label">DIRECCIÓN <span class="required-asterisk">*</span></label>
+                <input type="text" id="direccion" name="direccion" required class="form-input">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="poblacion" class="form-label">POBLACIÓN <span class="required-asterisk">*</span></label>
+                    <input type="text" id="poblacion" name="poblacion" required class="form-input">
+                </div>
+                <div>
+                    <label for="codigo_postal" class="form-label">CÓDIGO POSTAL <span class="required-asterisk">*</span></label>
+                    <input type="text" id="codigo_postal" name="codigo_postal" required class="form-input">
+                </div>
+                <div>
+                    <label for="telefono1" class="form-label">TELÉFONO 1 <span class="required-asterisk">*</span></label>
+                    <input type="tel" id="telefono1" name="telefono1" required class="form-input">
+                </div>
+                <div>
+                    <label for="telefono2" class="form-label">TELÉFONO 2</label>
+                    <input type="tel" id="telefono2" name="telefono2" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label for="correo_electronico" class="form-label">CORREO ELECTRÓNICO <span class="required-asterisk">*</span></label>
+                <input type="email" id="correo_electronico" name="correo_electronico" required class="form-input">
+            </div>
+
+            <div>
+                <label for="profesion" class="form-label">PROFESIÓN</label>
+                <input type="text" id="profesion" name="profesion" class="form-input">
+            </div>
+
+            <div>
+                <label for="como_nos_conocio" class="form-label">¿CÓMO NOS HA CONOCIDO?</label>
+                <input type="text" id="como_nos_conocio" name="como_nos_conocio" class="form-input">
+            </div>
+
+            <div class="form-section-title mt-8">
+                <h2 class="text-2xl font-semibold text-gray-700">2. Datos Médicos</h2>
+            </div>
+
+            <div>
+                <label for="tiempo_ultima_visita" class="form-label">¿CUÁNTO TIEMPO HA TRANSCURRIDO DESDE LA ÚLTIMA VISITA AL ODONTÓLOGO?</label>
+                <input type="text" id="tiempo_ultima_visita" name="tiempo_ultima_visita" class="form-input">
+            </div>
+
+            <div>
+                <label class="form-label">¿ES FUMADOR? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="es_fumador" value="si" onclick="toggleVisibility('cantidad_diaria_field', true)" required> Sí</label>
+                    <label><input type="radio" name="es_fumador" value="no" onclick="toggleVisibility('cantidad_diaria_field', false)"> No</label>
+                </div>
+                <div id="cantidad_diaria_field" class="conditional-field">
+                    <label for="cantidad_diaria" class="form-label">¿CANTIDAD DIARIA?</label>
+                    <input type="text" id="cantidad_diaria" name="cantidad_diaria" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿HÁBITOS TOXICOLÓGICOS? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="habitos_toxicologicos" value="si" onclick="toggleVisibility('cuales_habitos_field', true)" required> Sí</label>
+                    <label><input type="radio" name="habitos_toxicologicos" value="no" onclick="toggleVisibility('cuales_habitos_field', false)"> No</label>
+                </div>
+                <div id="cuales_habitos_field" class="conditional-field">
+                    <label for="cuales_habitos" class="form-label">¿CUÁLES?</label>
+                    <input type="text" id="cuales_habitos" name="cuales_habitos" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿ESTÁ USTED EMBARAZADA O CREE QUE PUEDE ESTARLO? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="embarazada" value="si" onclick="toggleVisibility('semanas_embarazo_field', true)" required> Sí</label>
+                    <label><input type="radio" name="embarazada" value="no" onclick="toggleVisibility('semanas_embarazo_field', false)"> No</label>
+                </div>
+                <div id="semanas_embarazo_field" class="conditional-field">
+                    <label for="semanas_embarazo" class="form-label">¿DE CUÁNTAS SEMANAS?</label>
+                    <input type="text" id="semanas_embarazo" name="semanas_embarazo" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿HA SANGRADO ANORMALMENTE POR EXTRACCIONES O CIRUGÍAS? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="sangrado_anormal" value="si" required> Sí</label>
+                    <label><input type="radio" name="sangrado_anormal" value="no"> No</label>
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿ES ALÉRGICO O HA TENIDO ALGUNA REACCIÓN ANORMAL A ALGUNA MEDICACIÓN O MATERIAL? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="es_alergico" value="si" onclick="toggleVisibility('cual_alergia_field', true)" required> Sí</label>
+                    <label><input type="radio" name="es_alergico" value="no" onclick="toggleVisibility('cual_alergia_field', false)"> No</label>
+                </div>
+                <div id="cual_alergia_field" class="conditional-field">
+                    <label for="cual_alergia" class="form-label">¿A CUÁL?</label>
+                    <input type="text" id="cual_alergia" name="cual_alergia" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿ESTÁ TOMANDO ALGUNO DE LOS SIGUIENTES MEDICAMENTOS? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="tomando_medicamentos" value="si" onclick="toggleVisibility('medicamentos_list_field', true)" required checked> Sí</label>
+                    <label><input type="radio" name="tomando_medicamentos" value="no" onclick="toggleVisibility('medicamentos_list_field', false)"> No</label>
+                </div>
+                <div id="medicamentos_list_field" class="conditional-field">
+                    <label class="form-label mb-2">¿CUÁL?</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 checkbox-group">
+                        <label><input type="checkbox" name="medicamentos_Antibioticos" value="Sí"> Antibióticos</label>
+                        <label><input type="checkbox" name="medicamentos_Anticoagulantes" value="Sí"> Anticoagulantes</label>
+                        <label><input type="checkbox" name="medicamentos_Anticonceptivos" value="Sí"> Anticonceptivos</label>
+                        <label><input type="checkbox" name="medicamentos_Antiinflamatorios" value="Sí"> Antiinflamatorios</label>
+                        <label><input type="checkbox" name="medicamentos_Aspirina" value="Sí"> Aspirina</label>
+                        <label><input type="checkbox" name="medicamentos_Bifosfonatos" value="Sí"> Bifosfonatos</label>
+                        <label><input type="checkbox" name="medicamentos_Cortisona" value="Sí"> Cortisona</label>
+                        <label><input type="checkbox" name="medicamentos_Hormonas" value="Sí"> Hormonas</label>
+                        <label><input type="checkbox" name="medicamentos_Insulina" value="Sí"> Insulina</label>
+                        <label><input type="checkbox" name="medicamentos_Sedantes" value="Sí"> Sedantes</label>
+                        <label><input type="checkbox" name="medicamentos_Otro" value="Sí" onclick="toggleVisibility('otro_medicamento_field', this.checked)"> Otro (detallar)</label>
+                    </div>
+                    <div id="otro_medicamento_field" class="conditional-field">
+                        <input type="text" id="otro_medicamento" name="otro_medicamento_detalle" placeholder="Detalle otros medicamentos" class="form-input mt-2">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿PADECE O HA PADECIDO ALGUNO DE LOS SIGUIENTES TRASTORNOS O ENFERMEDADES? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="padece_trastornos" value="si" onclick="toggleVisibility('trastornos_list_field', true)" required checked> Sí</label>
+                    <label><input type="radio" name="padece_trastornos" value="no" onclick="toggleVisibility('trastornos_list_field', false)"> No</label>
+                </div>
+                <div id="trastornos_list_field" class="conditional-field">
+                    <label class="form-label mb-2">¿CUÁL?</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 checkbox-group">
+                        <label><input type="checkbox" name="trastornos_Anemia" value="Sí"> Anemia</label>
+                        <label><input type="checkbox" name="trastornos_Artritis" value="Sí"> Artritis</label>
+                        <label><input type="checkbox" name="trastornos_Cardiopatias" value="Sí"> Cardiopatías</label>
+                        <label><input type="checkbox" name="trastornos_Colesterol" value="Sí"> Colesterol</label>
+                        <label><input type="checkbox" name="trastornos_Depresion" value="Sí"> Depresión</label>
+                        <label><input type="checkbox" name="trastornos_Diabetes" value="Sí"> Diabetes</label>
+                        <label><input type="checkbox" name="trastornos_DificultadesRespiratorias" value="Sí"> Dificultades Respiratorias</label>
+                        <label><input type="checkbox" name="trastornos_Epilepsia" value="Sí"> Epilepsia</label>
+                        <label><input type="checkbox" name="trastornos_Hipertension" value="Sí"> Hipertensión</label>
+                        <label><input type="checkbox" name="trastornos_Hipotension" value="Sí"> Hipotensión</label>
+                        <label><input type="checkbox" name="trastornos_Osteoporosis" value="Sí"> Osteoporosis</label>
+                        <label><input type="checkbox" name="trastornos_Reuma" value="Sí"> Reuma</label>
+                        <label><input type="checkbox" name="trastornos_Tiroides" value="Sí"> Tiroides</label>
+                        <label><input type="checkbox" name="trastornos_Ulcera" value="Sí"> Úlcera</label>
+                        <label><input type="checkbox" name="trastornos_SIDA_VIH" value="Sí"> SIDA (VIH)</label>
+                        <label><input type="checkbox" name="trastornos_Hepatitis" value="Sí"> Hepatitis (A, B, C)</label>
+                        <label><input type="checkbox" name="trastornos_Tuberculosis" value="Sí"> Tuberculosis</label>
+                        <label><input type="checkbox" name="trastornos_Otros" value="Sí" onclick="toggleVisibility('otro_trastorno_field', this.checked)"> Otros (detallar)</label>
+                    </div>
+                    <div id="otro_trastorno_field" class="conditional-field">
+                        <input type="text" id="otro_trastorno" name="otro_trastorno_detalle" placeholder="Detalle otros trastornos o enfermedades" class="form-input mt-2">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿LE HAN REALIZADO ALGUNA CIRUGÍA O TRANSPLANTE? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="cirugia_trasplante" value="si" onclick="toggleVisibility('tipo_cirugia_field', true)" required> Sí</label>
+                    <label><input type="radio" name="cirugia_trasplante" value="no" onclick="toggleVisibility('tipo_cirugia_field', false)"> No</label>
+                </div>
+                <div id="tipo_cirugia_field" class="conditional-field">
+                    <label for="tipo_cirugia" class="form-label">¿DE QUÉ TIPO?</label>
+                    <input type="text" id="tipo_cirugia" name="tipo_cirugia" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿LLEVA MARCAPASOS O ALGUNA PRÓTESIS? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="marcapasos_protesis" value="si" onclick="toggleVisibility('tipo_protesis_field', true)" required> Sí</label>
+                    <label><input type="radio" name="marcapasos_protesis" value="no" onclick="toggleVisibility('tipo_protesis_field', false)"> No</label>
+                </div>
+                <div id="tipo_protesis_field" class="conditional-field">
+                    <label for="tipo_protesis" class="form-label">¿DE QUÉ TIPO?</label>
+                    <input type="text" id="tipo_protesis" name="tipo_protesis" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label class="form-label">¿HA SIDO SOMETIDO A RADIOTERAPIA O QUIMIOTERAPIA? <span class="required-asterisk">*</span></label>
+                <div class="radio-group flex flex-col md:flex-row md:space-x-4 mb-2">
+                    <label><input type="radio" name="radioterapia_quimioterapia" value="si" onclick="toggleVisibility('tiempo_radioterapia_field', true)" required> Sí</label>
+                    <label><input type="radio" name="radioterapia_quimioterapia" value="no" onclick="toggleVisibility('tiempo_radioterapia_field', false)"> No</label>
+                </div>
+                <div id="tiempo_radioterapia_field" class="conditional-field">
+                    <label for="tiempo_radioterapia" class="form-label">¿DURANTE CUÁNTO TIEMPO?</label>
+                    <input type="text" id="tiempo_radioterapia" name="tiempo_radioterapia" class="form-input">
+                </div>
+            </div>
+
+            <div>
+                <label for="observaciones_medicas" class="form-label">OBSERVACIONES</label>
+                <textarea id="observaciones_medicas" name="observaciones_medicas" class="form-textarea"></textarea>
+            </div>
+
+            <div class="form-section-title mt-8">
+                <h2 class="text-2xl font-semibold text-gray-700">3. Información y Consentimiento de Protección de Datos</h2>
+            </div>
+
+            <div class="legal-text">
+                <p><strong>RESPONSABLE DEL TRATAMIENTO:</strong> MARCO GLOBAL BUSSINES S.L.</p>
+                <p><strong>DATOS DE CONTACTO:</strong> Carrer de Girona 75, Bajos, 08402 Granollers (Barcelona)</p>
+                <p><strong>TELÉFONO:</strong> 934 663 501</p>
+                <p><strong>DELEGADO DE PROTECCIÓN DE DATOS:</strong> TECNODOSIS S.L. dpd@utpr.es</p>
+
+                <h3 class="mt-4">FINALIDAD</h3>
+                <p>La finalidad primordial es recoger datos del estado de salud del paciente con el objeto de facilitar la asistencia sanitaria, dejando constancia de todos aquellos datos que, bajo criterio médico, permitan el conocimiento veraz y actualizado del estado de salud de una persona paciente.</p>
+                <p>Asimismo, también se utilizarán los datos para la gestión administrativa (incluyendo recordatorios de citas) y la facturación de los servicios prestados.</p>
+
+                <h3 class="mt-4">PLAZO DE CONSERVACIÓN</h3>
+                <p>Los datos de salud, incluidos en el historial clínico se conservarán, por obligación legal, por un plazo mínimo de 5 años. Los datos relativos a la gestión administrativa y de facturación de los servicios se conservarán durante los plazos legalmente establecidos en la legislación mercantil y tributaria.</p>
+
+                <h3 class="mt-4">DESTINATARIO (CESIÓN DE SUS DATOS)</h3>
+                <p>Asimismo, les informamos que los datos recogidos, en determinados casos, deberán ser cedidos a:</p>
+                <ol class="list-decimal pl-5">
+                    <li>Laboratorios protésicos y de análisis cuando sea necesario para el tratamiento, con la única finalidad de prestar el servicio sanitario.</li>
+                    <li>Mutuas y seguros médicos si es titular de alguna póliza de este tipo, con la única y exclusiva finalidad de gestionar el servicio con la compañía de seguros.</li>
+                    <li>Entidades financieras, en el caso de que decida financiar su tratamiento.</li>
+                    <li>A gestoría con la única finalidad de facturar los servicios prestados y cumplir con la legislación fiscal y mercantil.</li>
+                </ol>
+                <p class="mt-4">En algunos casos, realizamos fotografías odontológicas, y videos con pacientes, con la finalidad de mostrar en sitios web, redes sociales, congresos médicos con fines de docencia y/o publicitarios.</p>
+
+                <h3 class="mt-4">DERECHOS</h3>
+                <p>Puede ejercer sus derechos de acceso, rectificación, supresión, limitación, cancelación, oposición y portabilidad dirigiéndose personalmente a la Clínica o a través del siguiente correo electrónico:</p>
+                <p class="font-semibold">dentalestudiooficinas@gmail.com</p>
+                <p class="mt-2">Asimismo, tiene derecho a:</p>
+                <ol class="list-decimal pl-5">
+                    <li>Retirar el consentimiento/s prestados.</li>
+                    <li>A reclamar ante la autoridad de control (Agencia Española de Protección de Datos).</li>
+                </ol>
+            </div>
+
+            <div class="checkbox-group space-y-2">
+                <div>
+                    <label class="flex items-start">
+                        <input type="checkbox" name="consent_fotos_imagenes" value="Sí" class="mt-1 mr-2 rounded" required>
+                        <span>Autorizo a que se utilicen mis fotografías odontológicas e imágenes con las finalidades indicadas. <span class="required-asterisk">*</span></span>
+                    </label>
+                </div>
+                <div>
+                    <label class="flex items-start">
+                        <input type="checkbox" name="consent_comunicaciones_citas" value="Sí" class="mt-1 mr-2 rounded" required>
+                        <span>Autorizo el envío de comunicaciones por medios postales o electrónicos de citas o revisiones con la clínica. <span class="required-asterisk">*</span></span>
+                    </label>
+                </div>
+                <div>
+                    <label class="flex items-start">
+                        <input type="checkbox" name="consent_comunicaciones_comerciales" value="Sí" class="mt-1 mr-2 rounded">
+                        <span>Autorizo el envío de comunicaciones por medios postales o electrónicos para recibir comunicaciones comerciales de la clínica.</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <label class="flex items-start">
+                    <input type="checkbox" name="consent_datos_final" value="Sí" class="mt-1 mr-2 rounded" required>
+                    <span>Mediante el presente documento se cumple con el deber de información legal exigido por la normativa de protección de datos y con mi firma otorgo mi consentimiento para el tratamiento de mis datos con los fines arriba previstos. <span class="required-asterisk">*</span></span>
+                </label>
+            </div>
+
+            <div class="form-section-title mt-8">
+                <h2 class="text-2xl font-semibold text-gray-700">4. Consentimiento Informado para Exploraciones y Pruebas Diagnósticas</h2>
+            </div>
+
+            <div class="legal-text">
+                <p>Para satisfacción de los Derechos del Paciente, como instrumento favorecedor del correcto uso de los Procedimientos Terapéuticos Diagnósticos y Quirúrgicos y como cumplimiento de los deberes de información contemplados en la Ley 41/2002, de 14 de noviembre, básica reguladora de la Autonomía del Paciente y de derechos y obligaciones en materia de información y documentación clínica, así como la Ley 21/2000, de 29 de diciembre, sobre los derechos de información concerniente a la salud y la autonomía del paciente y la documentación clínica, y demás normativas complementarias en materia de consentimiento informado.</p>
+                <p>El abajo firmante, D/Dª <span class="font-bold">[Nombre del Paciente, se rellenaría automáticamente en la generación de PDF]</span> con DNI <span class="font-bold">[DNI del Paciente]</span> de <span class="font-bold">[Población del Paciente]</span></p>
+                <p>HA SIDO DEBIDAMENTE INFORMADO por el Dr/a. <span class="font-bold">[Nombre del Doctor, se rellenaría en la generación de PDF]</span> con nº de Colegiado [Nº Colegiado, se rellenaría en la generación de PDF]</p>
+                <p>De las características de la exploración o prueba diagnóstica y/o el procedimiento terapéutico recomendado en su caso. Se ha informado al paciente y/o a su representante legal, en un lenguaje comprensible y adecuado a su nivel de conocimiento, de los objetivos, características, beneficios y riesgos de la exploración o prueba diagnóstica y/o procedimiento terapéutico recomendado, así como de las opciones alternativas, en su caso, y de sus riesgos y beneficios. Se ha incluido también la información sobre los riesgos que pudieran afectar a su persona por sus circunstancias personales, profesionales o de otra índole.</p>
+                <p>Se ha informado al paciente de su derecho a rechazar o revocar en cualquier momento el consentimiento para la realización de una prueba o procedimiento, siempre que ello no suponga una amenaza para la salud pública o suponga un perjuicio a terceros. En este caso deberá firmar un documento en el que renuncie a la práctica de dichas actuaciones, informándosele de las posibles consecuencias negativas para su salud por este hecho, dejando constancia este de manera específica sobre este aspecto.</p>
+            </div>
+
+            <div class="mt-6">
+                <label class="flex items-start">
+                    <input type="checkbox" name="consent_informado_final" value="Sí" class="mt-1 mr-2 rounded" required>
+                    <span>Por ello, me considero en condiciones de ponderar debidamente tanto los riesgos como la utilidad y beneficio que puedo obtener del tratamiento: así pues, manifiesto que estoy satisfecho/a con la información y por ello **DOY MI CONSENTIMIENTO**. <span class="required-asterisk">*</span></span>
+                </label>
+            </div>
+
+            <div>
+                <label for="observaciones_paciente_consentimiento" class="form-label">OBSERVACIONES / Riesgos propios del paciente:</label>
+                <textarea id="observaciones_paciente_consentimiento" name="observaciones_paciente_consentimiento" class="form-textarea"></textarea>
+            </div>
+
+            <div class="form-section-title mt-8">
+                <h2 class="text-2xl font-semibold text-gray-700">5. Firmas (Para uso interno, o post-impresión)</h2>
+                <p class="text-sm text-gray-500">
+                    Estas secciones se usarían para la impresión o el registro final en la clínica.
+                    El consentimiento digital se ha capturado mediante los checkboxes obligatorios anteriores.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="form-label">FIRMA del DOCTOR</label>
+                    <div class="form-input bg-gray-100 min-h-[50px] flex items-center justify-center text-gray-500">
+                        [Espacio para firma manual en documento impreso]
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">FIRMA del PACIENTE</label>
+                    <div class="form-input bg-gray-100 min-h-[50px] flex items-center justify-center text-gray-500">
+                        [Consentimiento digital capturado arriba]
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <p class="text-gray-500 text-sm">
+                    SANTA COLOMA, <span class="font-semibold" id="current_date_display"></span>
+                </p>
+            </div>
+
+            <div class="text-center pt-8">
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 ease-in-out text-lg">
+                    Enviar Formulario
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar campos condicionales
+        function toggleVisibility(fieldId, show) {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.style.display = show ? 'block' : 'none';
+                if (!show) {
+                    const inputs = field.querySelectorAll('input, textarea');
+                    inputs.forEach(input => {
+                        if (input.type === 'checkbox' || input.type === 'radio') {
+                            input.checked = false;
+                        } else {
+                            input.value = '';
+                        }
+                    });
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lista de todos los campos condicionales que deben estar ocultos al inicio
+            const conditionalFieldsToHideInitially = [
+                'cantidad_diaria_field',
+                'cuales_habitos_field',
+                'semanas_embarazo_field',
+                'cual_alergia_field',
+                'tipo_cirugia_field',
+                'tipo_protesis_field',
+                'tiempo_radioterapia_field',
+                'otro_medicamento_field',
+                'otro_trastorno_field'
+            ];
+
+            // Ocultar todos los campos condicionales listados
+            conditionalFieldsToHideInitially.forEach(id => toggleVisibility(id, false));
+
+            // Lógica para los campos que deben estar visibles por defecto (con su radio "Sí" pre-marcado)
+            // Se asume que 'Sí' es la opción por defecto en "Tomando medicamentos" y "Padece trastornos"
+            const tomandoMedicamentosSiRadio = document.querySelector('input[name="tomando_medicamentos"][value="si"]');
+            if (tomandoMedicamentosSiRadio) {
+                tomandoMedicamentosSiRadio.checked = true;
+                toggleVisibility('medicamentos_list_field', true);
+            }
+
+            const padeceTrastornosSiRadio = document.querySelector('input[name="padece_trastornos"][value="si"]');
+            if (padeceTrastornosSiRadio) {
+                padeceTrastornosSiRadio.checked = true;
+                toggleVisibility('trastornos_list_field', true);
+            }
+
+            // Rellenar la fecha actual al final del consentimiento
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current_date_display').textContent = today.toLocaleDateString('es-ES', options);
+
+            // Manejar la visibilidad de los campos "Otro (detallar)" dentro de las listas de checkboxes
+            document.querySelectorAll('input[name="medicamentos_Otro"], input[name="trastornos_Otros"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (event) => {
+                    const targetFieldId = event.target.name === 'medicamentos_Otro' ? 'otro_medicamento_field' : 'otro_trastorno_field';
+                    toggleVisibility(targetFieldId, event.target.checked);
+                });
+            });
+
+            // Lógica de validación personalizada para el envío del formulario
+            document.getElementById('anamnesisForm').addEventListener('submit', function(event) {
+                let isValid = true;
+                let firstInvalidField = null;
+                const requiredFields = this.querySelectorAll('[required]');
+
+                requiredFields.forEach(field => {
+                    let fieldValid = true;
+
+                    // Manejo de radios
+                    if (field.type === 'radio') {
+                        const radioGroup = this.querySelectorAll(`input[name="${field.name}"]`);
+                        const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+                        if (!isChecked) {
+                            fieldValid = false;
+                        }
+                    }
+                    // Manejo de checkboxes
+                    else if (field.type === 'checkbox') {
+                        // Verifica si es un checkbox individual requerido (como los de consentimiento)
+                        // Para los checkboxes de listas (medicamentos, trastornos), se validan si el campo padre es visible
+                        if (!field.checked) {
+                            fieldValid = false;
+                        }
+                    }
+                    // Manejo de inputs de texto, email, date, tel
+                    else {
+                        if (!field.value.trim()) {
+                            fieldValid = false;
+                        }
+                    }
+
+                    if (!fieldValid) {
+                        isValid = false;
+                        // Resaltar visualmente el campo o su etiqueta
+                        if (field.type === 'radio' || field.type === 'checkbox') {
+                             // Si es un radio o checkbox, resaltar la etiqueta padre
+                            field.parentElement.style.color = '#ef4444';
+                            field.style.borderColor = '#ef4444'; // También para el input si aplica
+                        } else {
+                            field.style.borderColor = '#ef4444';
+                        }
+                        
+                        if (!firstInvalidField) {
+                            firstInvalidField = field;
+                        }
+                    } else {
+                         // Restaurar el estilo normal si el campo es válido
+                        if (field.type === 'radio' || field.type === 'checkbox') {
+                            field.parentElement.style.color = '#374151';
+                            field.style.borderColor = '#d1d5db';
+                        } else {
+                            field.style.borderColor = '#d1d5db';
+                        }
+                    }
+                });
+
+                if (!isValid) {
+                    event.preventDefault(); // Detener el envío del formulario
+                    alert('Por favor, complete todos los campos obligatorios antes de enviar el formulario.');
+
+                    if (firstInvalidField) {
+                        firstInvalidField.focus(); // Enfocar el primer campo inválido
+                        firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Desplazarse suavemente
+                    }
+                }
+            });
+
+            // Función para limpiar el resaltado cuando el usuario interactúa con el campo
+            document.querySelectorAll('.form-input, .form-textarea, input[type="radio"], input[type="checkbox"]').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.style.borderColor = '#d1d5db'; // Restablece el borde
+                    if (this.type === 'radio' || this.type === 'checkbox') {
+                        // Si es un radio o checkbox, restablece el color de la etiqueta padre
+                        this.parentElement.style.color = '#374151';
+                    }
+                });
+                // Para radios, también escuchar el cambio en el grupo
+                if (input.type === 'radio') {
+                    input.addEventListener('change', function() {
+                        const radioGroup = document.querySelectorAll(`input[name="${this.name}"]`);
+                        radioGroup.forEach(radio => {
+                            radio.style.borderColor = '#d1d5db'; // Restablece el borde de todos los radios del grupo
+                            radio.parentElement.style.color = '#374151';
+                        });
+                    });
+                }
+                 // Para los checkboxes de consentimiento, manejar el cambio para restaurar el color del texto
+                if (input.name.startsWith('consent_') && input.type === 'checkbox') {
+                    input.addEventListener('change', function() {
+                        if (this.checked) {
+                            this.parentElement.style.color = '#374151';
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
